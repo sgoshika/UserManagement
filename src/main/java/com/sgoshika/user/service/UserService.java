@@ -12,7 +12,7 @@ import org.mongodb.morphia.query.UpdateOperations;
 import org.mongodb.morphia.query.UpdateResults;
 
 import com.mongodb.MongoClient;
-import com.sgoshika.user.model.User;
+import com.sgoshika.user.entities.User;
 
 public class UserService {
 	MongoClient client = new MongoClient("localhost", 27017);
@@ -23,19 +23,11 @@ public class UserService {
 		if (user.getuId() == null)
 			return "Invalid User";
 		List<User> lUser = getAllUser();
-		Iterator<User> itr = lUser.iterator();
-		int index=Collections.binarySearch((ArrayList) lUser, user);
-		
+		int index=Collections.binarySearch((ArrayList) lUser, user); //If (User not found i.e, for NEW USER) then index ==-1
+
 		if(index!=-1){
 			return "User already exists";
 		}
-		/*if (lUser != null) {
-			while (itr.hasNext()) {
-				if (itr.next().equals(user)) {
-					return "User already exists";
-				}
-			}
-		}*/
 		datastore.save(user);
 		return "Add User Success";
 	}
@@ -60,14 +52,16 @@ public class UserService {
 			Query<User> query = datastore.createQuery(User.class).field("_id").equal(userDB.getId());
 
 			UpdateOperations<User> ops = datastore.createUpdateOperations(User.class)
-					.set("firstName", user.getFirstName()).set("lastName", user.getLastName())
-					.set("email", user.getEmail()).set("address", user.getAddress())
-					.set("dateCreated", user.getDateCreated()).set("company", user.getCompany())
+					.set("firstName", user.getFirstName())
+					.set("lastName", user.getLastName())
+					.set("email", user.getEmail())
+					.set("address", user.getAddress())
+					.set("dateCreated", user.getDateCreated())
+					.set("company", user.getCompany())
 					.set("profilePic", user.getProfilePic());
 
 			UpdateResults urs = datastore.update(query, ops); // Update the object
 																
-			System.out.println("UpdateResults " + urs.getUpdatedCount());
 			if (urs.getUpdatedCount() > 0) {
 				return "Update Success";
 			} else {
@@ -76,12 +70,5 @@ public class UserService {
 		} else {
 			return "404 user not found";
 		}
-
 	}
-
-	/*
-	 * public User getUserByID(String username) { Blog blog =
-	 * datastore.find(Blog.class, "auth", username).get(); if (blog != null) {
-	 * return blog; } else return null; }
-	 */
 }

@@ -14,7 +14,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sgoshika.user.model.User;
+import com.sgoshika.user.entities.User;
 import com.sgoshika.user.service.UserService;
 
 public class GetAllUserTest {

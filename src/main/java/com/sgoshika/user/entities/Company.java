@@ -1,4 +1,4 @@
-package com.sgoshika.user.model;
+package com.sgoshika.user.entities;
 
 public class Company {
 	private String name;

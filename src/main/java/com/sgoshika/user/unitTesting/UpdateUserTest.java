@@ -14,9 +14,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sgoshika.user.model.Address;
-import com.sgoshika.user.model.Company;
-import com.sgoshika.user.model.User;
+import com.sgoshika.user.entities.Address;
+import com.sgoshika.user.entities.Company;
+import com.sgoshika.user.entities.User;
 import com.sgoshika.user.service.UserService;
 
 public class UpdateUserTest {

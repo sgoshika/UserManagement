@@ -1,4 +1,4 @@
-package com.sgoshika.user.model;
+package com.sgoshika.user.entities;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Id;
@@ -11,7 +11,7 @@ public class User implements Comparable<User> {
 	private String lastName;
 	private String email;
 	private Address address;
-	private String dateCreated; // Change to date type ***********
+	private String dateCreated; 
 	private Company company;
 	private String profilePic;
 
@@ -130,7 +130,6 @@ public class User implements Comparable<User> {
 
 	@Override
 	public int compareTo(User o) {
-		// TODO Auto-generated method stub
 		return this.uId.compareTo(o.uId);
 	}
 

@@ -1,11 +1,11 @@
-package com.sgoshika.user.resource;
+package com.sgoshika.user.controller;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
 import com.google.gson.Gson;
-import com.sgoshika.user.model.User;
+import com.sgoshika.user.entities.User;
 import com.sgoshika.user.service.UserService;
 
 public class RestApiService {
@@ -13,7 +13,8 @@ public class RestApiService {
 
 	public static void main(String[] args) {
 		Gson gson = new Gson();
-
+		
+		// Adding User 		
 		post("/add-user", (req, res) -> {
 			res.type("application/json");
 			User user = gson.fromJson(req.body(), User.class);
