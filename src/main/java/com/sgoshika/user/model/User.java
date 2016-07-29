@@ -3,7 +3,7 @@ package com.sgoshika.user.model;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Id;
 
-public class User {
+public class User implements Comparable<User> {
 	@Id
 	private ObjectId id;
 	private String uId;
@@ -126,6 +126,12 @@ public class User {
 
 	public void setProfilePic(String profilePic) {
 		this.profilePic = profilePic;
+	}
+
+	@Override
+	public int compareTo(User o) {
+		// TODO Auto-generated method stub
+		return this.uId.compareTo(o.uId);
 	}
 
 }
