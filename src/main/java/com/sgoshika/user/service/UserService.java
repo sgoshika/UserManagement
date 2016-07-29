@@ -24,14 +24,18 @@ public class UserService {
 			return "Invalid User";
 		List<User> lUser = getAllUser();
 		Iterator<User> itr = lUser.iterator();
-//		Collections.binarySearch((ArrayList) lUser, user);
-		if (lUser != null) {
+		int index=Collections.binarySearch((ArrayList) lUser, user);
+		
+		if(index!=-1){
+			return "User already exists";
+		}
+		/*if (lUser != null) {
 			while (itr.hasNext()) {
 				if (itr.next().equals(user)) {
 					return "User already exists";
 				}
 			}
-		}
+		}*/
 		datastore.save(user);
 		return "Add User Success";
 	}
